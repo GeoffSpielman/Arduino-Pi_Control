@@ -1,6 +1,5 @@
 //Geoff Spielman
 //April 23, 2016
-//Test
 
 const int led = 13;
 
@@ -37,9 +36,10 @@ void serialEvent()
 {
   while (Serial.available())
   {
+    //Serial.println('test');
     char inChar = (char)Serial.read();
     inputString += inChar;
-    if (inChar == '\n' || inChar == '$') //if 'end with newline' is not enabled on serial monitor, end with $
+    if (inChar == '\n' || inChar == '!') //if 'end with newline' is not enabled on serial monitor, end with !
     {
       needChange = true;
     }
