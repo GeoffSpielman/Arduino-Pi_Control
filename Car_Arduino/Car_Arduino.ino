@@ -2,7 +2,10 @@
 //April 23, 2016
 
 const int led = 13;
-int mA = 0, mB = 0;
+const int mtrL = 6;
+const int mtrR = 5;
+
+int mL = 0, mR = 0;
 
 String inputString = "";
 boolean needChange = false;
@@ -20,11 +23,13 @@ void loop() {
   {
     //Serial.print("Arduino rec: ");
     //Serial.println(inputString);
-    Serial.print("Motor A: ");
-    Serial.print(mA);
-    Serial.print("   Motor B: ");
-    Serial.println(mB);
-    
+    Serial.print("Left Motor: ");
+    Serial.print(mL);
+    Serial.print("   Right Motor: ");
+    Serial.println(mR);
+
+    analogWrite(mtrL, mL);
+    analogWrite(mtrR, mR);
     inputString = "";
     needChange = false;
   }
@@ -44,8 +49,8 @@ void serialEvent()
       {  
         endIndex = inputString.indexOf("/n");
       }
-      mA = inputString.substring(0, commaIndex).toInt();
-      mB = inputString.substring(commaIndex + 1, endIndex).toInt();
+      mL = inputString.substring(0, commaIndex).toInt();
+      mR = inputString.substring(commaIndex + 1, endIndex).toInt();
       needChange = true;
     } 
   }
